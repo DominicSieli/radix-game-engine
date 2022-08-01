@@ -2,7 +2,7 @@
 
 #include "EntityManager.h"
 #include "TransformComponent.h"
-#include "../../lib/glm/glm.hpp"
+#include "../lib/glm/glm.hpp"
 
 namespace Radix
 {

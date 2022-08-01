@@ -3,7 +3,7 @@
 #include <SDL2/SDL.h>
 #include "./EntityManager.h"
 #include "./AssetManager.h"
-#include "../../lib/glm/glm.hpp"
+#include "../lib/glm/glm.hpp"
 
 namespace Radix
 {

@@ -4,7 +4,7 @@
 
 #include "./Game.h"
 #include "./EntityManager.h"
-#include "../../lib/glm/glm.hpp"
+#include "../lib/glm/glm.hpp"
 
 namespace Radix
 {

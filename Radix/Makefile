@@ -1,37 +1,29 @@
-debug:
-	mkdir -p bin/debug;
-	mkdir -p ../Game/lib/debug;
-	g++ -w -std=c++14 -Wfatal-errors \
-	./src/*.cpp \
-	-o bin/debug/radix \
-	-I"./lib/glm" \
-	-L"./lib/glm" \
-	-lSDL2 \
-	-lSDL2_image \
-	-lSDL2_ttf \
-	-lSDL2_mixer;
-	cp bin/debug/radix ../Game/lib/debug;
+CXX = g++
+IFLAGS = -I.
+LDFLAGS = -L.
+STATIC_FLAGS = ar rcs
+CXXFLAGS = -std=c++20 -Wfatal-errors -w
+LDLIBS = -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
 
-master:
-	mkdir -p bin/master;
-	mkdir -p ../Game/lib/master;
-	g++ -w -std=c++14 -Wfatal-errors \
-	./src/*.cpp \
-	-o bin/master/radix \
-	-I"./lib/glm" \
-	-L"./lib/glm" \
-	-lSDL2 \
-	-lSDL2_image \
-	-lSDL2_ttf \
-	-lSDL2_mixer;
-	cp bin/master/radix ../Game/lib/master;
+build:
+	mkdir -p ./bin;
+	mkdir -p ./obj;
+	mkdir -p ../Game/lib;
+
+	#$(CXX) $(CXXFLAGS) ./src/*.cpp -o ./bin/Radix $(IFLAGS) $(LDFLAGS) $(LDLIBS);
+
+	$(CXX) -E -P $(CXXFLAGS) ./src/Radix.h -o ./bin/Radix.h;
+
+	$(CXX) -c $(CXXFLAGS) ./src/*.cpp -static $(IFLAGS) $(LDFLAGS) $(LDLIBS);
+
+	mv ./*.o ./obj;
+
+	$(STATIC_FLAGS) ./bin/libRadix.a ./obj/*.o;
+
+	cp ./bin/libRadix.a ../Game/lib/libRadix.a;
+	cp ./bin/Radix.h ../Game/lib/Radix.h;
 
 clean:
 	rm -f -r ./bin;
+	rm -f -r ./obj;
 	rm -f -r ../Game/lib;
-
-run-debug:
-	./bin/debug/radix;
-
-run-master:
-	./bin/master/radix;
