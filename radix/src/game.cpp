@@ -1,16 +1,16 @@
 #include <iostream>
 
-#include "./Map.h"
-#include "./Game.h"
-#include "./AssetManager.h"
-#include "./EntityManager.h"
+#include "./map.h"
+#include "./game.h"
+#include "./asset_manager.h"
+#include "./entity_manager.h"
 #include "../lib/glm/glm.hpp"
-#include "./SpriteComponent.h"
-#include "./KeyboardComponent.h"
-#include "./ColliderComponent.h"
-#include "./TransformComponent.h"
-#include "./TextLabelComponent.h"
-#include "./ProjectileEmitterComponent.h"
+#include "./sprite_component.h"
+#include "./keyboard_component.h"
+#include "./collider_component.h"
+#include "./transform_component.h"
+#include "./text_label_component.h"
+#include "./projectile_emitter_component.h"
 
 namespace Radix
 {

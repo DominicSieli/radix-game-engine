@@ -1,9 +1,9 @@
 #pragma once
 
 #include <SDL2/SDL.h>
-#include "./Game.h"
-#include "./EntityManager.h"
-#include "./TransformComponent.h"
+#include "./game.h"
+#include "./entity_manager.h"
+#include "./transform_component.h"
 
 namespace Radix
 {

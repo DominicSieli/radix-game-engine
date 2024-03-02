@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Game.h"
-#include "EntityManager.h"
-#include "TransformComponent.h"
-#include "SpriteComponent.h"
+#include "game.h"
+#include "entity_manager.h"
+#include "transform_component.h"
+#include "sprite_component.h"
 
 namespace Radix
 {

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "EntityManager.h"
-#include "TransformComponent.h"
+#include "entity_manager.h"
+#include "transform_component.h"
 #include "../lib/glm/glm.hpp"
 
 namespace Radix

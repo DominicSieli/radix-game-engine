@@ -5,9 +5,9 @@
 #include <string>
 #include <typeinfo>
 
-#include "./Constants.h"
-#include "./Component.h"
-#include "./EntityManager.h"
+#include "./constants.h"
+#include "./component.h"
+#include "./entity_manager.h"
 
 namespace Radix
 {

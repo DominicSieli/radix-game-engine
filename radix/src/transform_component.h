@@ -2,8 +2,8 @@
 
 #include <SDL2/SDL.h>
 
-#include "./Game.h"
-#include "./EntityManager.h"
+#include "./game.h"
+#include "./entity_manager.h"
 #include "../lib/glm/glm.hpp"
 
 namespace Radix

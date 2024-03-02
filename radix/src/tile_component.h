@@ -1,8 +1,8 @@
 #pragma once
 
 #include <SDL2/SDL.h>
-#include "./EntityManager.h"
-#include "./AssetManager.h"
+#include "./entity_manager.h"
+#include "./asset_manager.h"
 #include "../lib/glm/glm.hpp"
 
 namespace Radix

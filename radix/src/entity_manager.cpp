@@ -1,7 +1,7 @@
 #include <iostream>
-#include "./Collision.h"
-#include "./EntityManager.h"
-#include "./ColliderComponent.h"
+#include "./collision.h"
+#include "./entity_manager.h"
+#include "./collider_component.h"
 
 namespace Radix
 {

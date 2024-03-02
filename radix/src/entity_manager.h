@@ -2,8 +2,8 @@
 
 #include <vector>
 
-#include "./Entity.h"
-#include "./Component.h"
+#include "./entity.h"
+#include "./component.h"
 
 namespace Radix
 {

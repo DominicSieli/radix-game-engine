@@ -1,8 +1,8 @@
 #include <fstream>
-#include "./Map.h"
-#include "./Game.h"
-#include "./EntityManager.h"
-#include "./TileComponent.h"
+#include "./map.h"
+#include "./game.h"
+#include "./entity_manager.h"
+#include "./tile_component.h"
 
 namespace Radix
 {

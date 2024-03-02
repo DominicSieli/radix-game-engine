@@ -2,10 +2,10 @@
 
 #include <string>
 #include <SDL2/SDL.h>
-#include "./Animation.h"
-#include "./AssetManager.h"
-#include "./TextureManager.h"
-#include "./TransformComponent.h"
+#include "./animation.h"
+#include "./asset_manager.h"
+#include "./texture_manager.h"
+#include "./transform_component.h"
 
 namespace Radix
 {

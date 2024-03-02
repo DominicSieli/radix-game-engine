@@ -1,4 +1,4 @@
-#include "./Collision.h"
+#include "./collision.h"
 
 namespace Radix
 {

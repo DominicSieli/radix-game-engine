@@ -3,10 +3,10 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
-#include "./Game.h"
-#include "./FontManager.h"
-#include "./AssetManager.h"
-#include "./EntityManager.h"
+#include "./game.h"
+#include "./font_manager.h"
+#include "./asset_manager.h"
+#include "./entity_manager.h"
 
 namespace Radix
 {

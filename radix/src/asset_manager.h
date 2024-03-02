@@ -4,10 +4,10 @@
 #include <string>
 #include <SDL2/SDL_ttf.h>
 
-#include "./Game.h"
-#include "./FontManager.h"
-#include "./EntityManager.h"
-#include "./TextureManager.h"
+#include "./game.h"
+#include "./font_manager.h"
+#include "./entity_manager.h"
+#include "./texture_manager.h"
 
 namespace Radix
 {
