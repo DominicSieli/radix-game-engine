@@ -1,4 +1,5 @@
-#pragma once
+#ifndef COMPONENT
+#define COMPONENT
 
 #include "./entity.h"
 
@@ -8,11 +9,13 @@ namespace Radix
 
 	class Component
 	{
-	public:
-		Entity* entity;
-		virtual ~Component() {}
-		virtual void Initialize() {}
-		virtual void Update(float deltaTime) {}
-		virtual void Render() {}
+		public:
+			Entity* entity;
+			virtual ~Component() {}
+			virtual void Initialize() {}
+			virtual void Update(float delta_time) {}
+			virtual void Render() {}
 	};
 }
+
+#endif

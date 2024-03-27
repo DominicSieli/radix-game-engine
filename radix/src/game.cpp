@@ -16,10 +16,10 @@ namespace Radix
 {
 	Map* map;
 	SDL_Event Game::event;
-	EntityManager entityManager;
+	EntityManager entity_manager;
 	SDL_Renderer* Game::renderer;
 	SDL_Rect Game::camera = {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT};
-	AssetManager* Game::assetManager = new AssetManager(&entityManager);
+	AssetManager* Game::asset_manager = new AssetManager(&entity_manager);
 
 	Game::Game()
 	{
@@ -65,52 +65,51 @@ namespace Radix
 		return this->running;
 	}
 
-	Entity& player(entityManager.AddEntity("player", PLAYER));
+	Entity& player(entity_manager.AddEntity("player", PLAYER));
 
-	void Game::LoadLevel(int levelNumber)
+	void Game::LoadLevel(int level_number)
 	{
-		assetManager->AddFont("charriot-font", std::string("./assets/fonts/charriot.ttf").c_str(), 24);
-
-		assetManager->AddTexture("tank-image", std::string("./assets/images/tank-big-right.png").c_str());
-		assetManager->AddTexture("chopper-image", std::string("./assets/images/chopper-spritesheet.png").c_str());
-		assetManager->AddTexture("radar-image", std::string("./assets/images/radar.png").c_str());
-		assetManager->AddTexture("heliport-image", std::string("./assets/images/heliport.png").c_str());
-		assetManager->AddTexture("jungle-tiletexture", std::string("./assets/tilemaps/jungle.png").c_str());
-		assetManager->AddTexture("projectile-image", std::string("./assets/images/bullet-enemy.png").c_str());
+		asset_manager->AddFont("charriot-font", std::string("./assets/fonts/charriot.ttf").c_str(), 24);
+		asset_manager->AddTexture("tank-image", std::string("./assets/images/tank-big-right.png").c_str());
+		asset_manager->AddTexture("chopper-image", std::string("./assets/images/chopper-spritesheet.png").c_str());
+		asset_manager->AddTexture("radar-image", std::string("./assets/images/radar.png").c_str());
+		asset_manager->AddTexture("heliport-image", std::string("./assets/images/heliport.png").c_str());
+		asset_manager->AddTexture("jungle-tiletexture", std::string("./assets/tilemaps/jungle.png").c_str());
+		asset_manager->AddTexture("projectile-image", std::string("./assets/images/bullet-enemy.png").c_str());
 
 		map = new Map("jungle-tiletexture", 2, 32);
 		map->LoadMap("./assets/tilemaps/jungle.map", 25, 20);
 
-		Entity& labelLevelName(entityManager.AddEntity("LabelLevelName", UI));
-		labelLevelName.AddComponent<TextLabelComponent>(10, 10, "Level: 1", "charriot-font", WHITE);
+		Entity& label_level_name(entity_manager.AddEntity("LabelLevelName", UI));
+		label_level_name.AddComponent<TextLabelComponent>(10, 10, "Level: 1", "charriot-font", WHITE);
 
 		player.AddComponent<TransformComponent>(240, 106, 0, 0, 32, 32, 1);
 		player.AddComponent<SpriteComponent>("chopper-image", 2, 90, true, false);
 		player.AddComponent<KeyboardComponent>("up", "down", "left", "right", "space");
 		player.AddComponent<ColliderComponent>("PLAYER", 240, 106, 32, 32);
 
-		Entity& tank(entityManager.AddEntity("tank", ENEMY));
+		Entity& tank(entity_manager.AddEntity("tank", ENEMY));
 		tank.AddComponent<TransformComponent>(250, 495, 5, 0, 32, 32, 1);
 		tank.AddComponent<SpriteComponent>("tank-image");
 		tank.AddComponent<ColliderComponent>("ENEMY", 150, 495, 32, 32);
 
-		TransformComponent* tankTransform = tank.GetComponent<TransformComponent>();
-		Entity& projectile(entityManager.AddEntity("projectile", PROJECTILE));
-		projectile.AddComponent<TransformComponent>(tankTransform->position.x+16, tankTransform->position.y+16, 0, 0, 4, 4, 1);
+		TransformComponent* tank_transform = tank.GetComponent<TransformComponent>();
+		Entity& projectile(entity_manager.AddEntity("projectile", PROJECTILE));
+		projectile.AddComponent<TransformComponent>(tank_transform->position.x+16, tank_transform->position.y+16, 0, 0, 4, 4, 1);
 		projectile.AddComponent<SpriteComponent>("projectile-image");
-		projectile.AddComponent<ColliderComponent>("PROJECTILE", tankTransform->position.x+16, tankTransform->position.y+16, 4, 4);
+		projectile.AddComponent<ColliderComponent>("PROJECTILE", tank_transform->position.x+16, tank_transform->position.y+16, 4, 4);
 		projectile.AddComponent<ProjectileEmitterComponent>(50, 0, 200, true);
 
-		Entity& helipad(entityManager.AddEntity("helipad", OBSTACLE));
+		Entity& helipad(entity_manager.AddEntity("helipad", OBSTACLE));
 		helipad.AddComponent<TransformComponent>(470, 420, 0, 0, 32, 32, 1);
 		helipad.AddComponent<SpriteComponent>("heliport-image");
 		helipad.AddComponent<ColliderComponent>("LEVEL_COMPLETE", 470, 420, 32, 32);
 
-		Entity& radar(entityManager.AddEntity("radar", UI));
+		Entity& radar(entity_manager.AddEntity("radar", UI));
 		radar.AddComponent<TransformComponent>(720, 15, 0, 0, 64, 64, 1);
 		radar.AddComponent<SpriteComponent>("radar-image", 8, 150, false, true);
 
-		entityManager.ListEntities();
+		entity_manager.ListEntities();
 	}
 
 	void Game::Input()
@@ -127,13 +126,13 @@ namespace Radix
 
 	void Game::Update()
 	{
-		float deltaTime = (SDL_GetTicks() - ticksLastFrame) / 1000.00f;
+		float delta_time = (SDL_GetTicks() - ticks_last_frame) / 1000.00f;
 
-		deltaTime = (deltaTime > 0.05f) ? 0.05f : deltaTime;
+		delta_time = (delta_time > 0.05f) ? 0.05f : delta_time;
 
-		this->ticksLastFrame = SDL_GetTicks();
+		this->ticks_last_frame = SDL_GetTicks();
 
-		entityManager.Update(deltaTime);
+		entity_manager.Update(delta_time);
 
 		UpdateCameraMovement();
 		CheckCollisions();
@@ -144,22 +143,22 @@ namespace Radix
 		SDL_SetRenderDrawColor(this->renderer, 21, 21, 21, 255);
 		SDL_RenderClear(this->renderer);
 
-		if(entityManager.IsEmpty() == true)
+		if(entity_manager.IsEmpty() == true)
 		{
 			return;
 		}
 
-		entityManager.Render();
+		entity_manager.Render();
 
 		SDL_RenderPresent(this->renderer);
 	}
 
 	void Game::UpdateCameraMovement()
 	{
-		TransformComponent* playerTransform = player.GetComponent<TransformComponent>();
+		TransformComponent* player_transform = player.GetComponent<TransformComponent>();
 
-		camera.x = playerTransform->position.x - (WINDOW_WIDTH / 2);
-		camera.y = playerTransform->position.y - (WINDOW_HEIGHT / 2);
+		camera.x = player_transform->position.x - (WINDOW_WIDTH / 2);
+		camera.y = player_transform->position.y - (WINDOW_HEIGHT / 2);
 
 		camera.x = (camera.x < 0) ? 0 : camera.x;
 		camera.y = (camera.y < 0) ? 0 : camera.y;
@@ -169,19 +168,19 @@ namespace Radix
 
 	void Game::CheckCollisions()
 	{
-		CollisionType collisionType = entityManager.CheckCollisions();
+		CollisionType collision_type = entity_manager.CheckCollisions();
 
-		if(collisionType == PLAYER_ENEMY_COLLISION)
+		if(collision_type == PLAYER_ENEMY_COLLISION)
 		{
 			ProcessGameOver();
 		}
 
-		if(collisionType == PLAYER_PROJECTILE_COLLISION)
+		if(collision_type == PLAYER_PROJECTILE_COLLISION)
 		{
 			ProcessGameOver();
 		}
 
-		if(collisionType == PLAYER_LEVEL_COMPLETE_COLLISION)
+		if(collision_type == PLAYER_LEVEL_COMPLETE_COLLISION)
 		{
 			ProcessNextLevel(1);
 		}
@@ -193,7 +192,7 @@ namespace Radix
 		running = false;
 	}
 
-	void Game::ProcessNextLevel(int levelNumber)
+	void Game::ProcessNextLevel(int level_number)
 	{
 		std::cout << "Next Level\n";
 		running = false;

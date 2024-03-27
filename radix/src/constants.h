@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CONSTANTS
+#define CONSTANTS
 
 #include <SDL2/SDL.h>
 
@@ -36,3 +37,5 @@ namespace Radix
 
 	const unsigned int LAYER_COUNT = 7;
 }
+
+#endif

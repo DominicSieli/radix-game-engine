@@ -2,9 +2,9 @@
 
 namespace Radix
 {
-	TTF_Font* FontManager::LoadFont(const char* fileName, int fontSize)
+	TTF_Font* FontManager::LoadFont(const char* file_name, int font_size)
 	{
-		return TTF_OpenFont(fileName, fontSize);
+		return TTF_OpenFont(file_name, font_size);
 	}
 
 	void FontManager::DrawFont(SDL_Texture* texture, SDL_Rect position)

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TILE_COMPONENT
+#define TILE_COMPONENT
 
 #include <SDL2/SDL.h>
 #include "./entity_manager.h"
@@ -9,44 +10,46 @@ namespace Radix
 {
 	class TileComponent: public Component
 	{
-	public:
-		SDL_Texture* texture;
-		SDL_Rect sourceRectangle;
-		SDL_Rect destinationRectangle;
-		glm::vec2 position;
+		public:
+			SDL_Texture* texture;
+			SDL_Rect source_rectangle;
+			SDL_Rect destination_rectangle;
+			glm::vec2 position;
 
-		TileComponent(int sourceRectangleX, int sourceRectangleY, int x, int y, int tileSize, int tileScale, std::string assetTextureId)
-		{
-			texture = Game::assetManager->GetTexture(assetTextureId);
+			TileComponent(int source_rectangle_x, int source_rectangle_y, int x, int y, int tile_size, int tile_scale, std::string asset_texture_id)
+			{
+				texture = Game::asset_manager->GetTexture(asset_texture_id);
 
-			sourceRectangle.x = sourceRectangleX;
-			sourceRectangle.y = sourceRectangleY;
-			sourceRectangle.w = tileSize;
-			sourceRectangle.h = tileSize;
+				source_rectangle.x = source_rectangle_x;
+				source_rectangle.y = source_rectangle_y;
+				source_rectangle.w = tile_size;
+				source_rectangle.h = tile_size;
 
-			destinationRectangle.x = x;
-			destinationRectangle.y = y;
-			destinationRectangle.w = tileSize * tileScale;
-			destinationRectangle.h = tileSize * tileScale;
+				destination_rectangle.x = x;
+				destination_rectangle.y = y;
+				destination_rectangle.w = tile_size * tile_scale;
+				destination_rectangle.h = tile_size * tile_scale;
 
-			position.x = x;
-			position.y = y;
-		}
+				position.x = x;
+				position.y = y;
+			}
 
-		~TileComponent()
-		{
-			SDL_DestroyTexture(texture);
-		}
+			~TileComponent()
+			{
+				SDL_DestroyTexture(texture);
+			}
 
-		void Update(float deltaTime) override
-		{
-			destinationRectangle.x = position.x - Game::camera.x;
-			destinationRectangle.y = position.y - Game::camera.y;
-		}
+			void Update(float delta_time) override
+			{
+				destination_rectangle.x = position.x - Game::camera.x;
+				destination_rectangle.y = position.y - Game::camera.y;
+			}
 
-		void Render() override
-		{
-			TextureManager::Draw(texture, sourceRectangle, destinationRectangle, SDL_FLIP_NONE);
-		}
+			void Render() override
+			{
+				TextureManager::Draw(texture, source_rectangle, destination_rectangle, SDL_FLIP_NONE);
+			}
 	};
 }
+
+#endif

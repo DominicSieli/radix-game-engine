@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GAME
+#define GAME
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
@@ -12,29 +13,31 @@ namespace Radix
 
 	class Game
 	{
-	private:
-		bool running = false;
-		SDL_Window* window = nullptr;
+		private:
+			bool running = false;
+			SDL_Window* window = nullptr;
 
-	public:
-		Game();
-		~Game();
+		public:
+			Game();
+			~Game();
 
-		int ticksLastFrame = 0;
-		bool Running() const;
-		static SDL_Event event;
-		static SDL_Rect camera;
-		static SDL_Renderer* renderer;
-		static AssetManager* assetManager;
+			int ticks_last_frame = 0;
+			bool Running() const;
+			static SDL_Event event;
+			static SDL_Rect camera;
+			static SDL_Renderer* renderer;
+			static AssetManager* asset_manager;
 
-		void LoadLevel(int levelNumber);
-		void Input();
-		void Update();
-		void Render();
-		void UpdateCameraMovement();
-		void CheckCollisions();
-		void ProcessGameOver();
-		void ProcessNextLevel(int levelNumber);
-		void Destroy();
+			void LoadLevel(int);
+			void Input();
+			void Update();
+			void Render();
+			void UpdateCameraMovement();
+			void CheckCollisions();
+			void ProcessGameOver();
+			void ProcessNextLevel(int);
+			void Destroy();
 	};
 }
+
+#endif

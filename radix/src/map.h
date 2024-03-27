@@ -1,18 +1,21 @@
-#pragma once
+#ifndef MAP
+#define MAP
 
 namespace Radix
 {
 	class Map
 	{
-	private:
-		std::string textureId;
-		int scale;
-		int tileSize;
-	public:
-		Map(std::string textureId, int scale, int tileSize);
-		~Map();
+		private:
+			int scale;
+			int tile_size;
+			std::string texture_id;
+		public:
+			Map(std::string, int, int);
+			~Map();
 
-		void LoadMap(std::string filePath, int mapSizeX, int mapSizeY);
-		void AddTile(int sourceX, int sourceY, int x, int y);
+			void LoadMap(std::string, int, int);
+			void AddTile(int, int, int, int);
 	};
 }
+
+#endif

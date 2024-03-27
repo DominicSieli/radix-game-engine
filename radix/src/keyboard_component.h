@@ -1,4 +1,5 @@
-#pragma once
+#ifndef KEYBOARD_COMPONENT
+#define KEYBOARD_COMPONENT
 
 #include "game.h"
 #include "entity_manager.h"
@@ -9,111 +10,113 @@ namespace Radix
 {
 	class KeyboardComponent: public Component
 	{
-	public:
-		std::string upKey;
-		std::string downKey;
-		std::string leftKey;
-		std::string rightKey;
-		std::string shootKey;
+		public:
+			std::string up_key;
+			std::string down_key;
+			std::string left_key;
+			std::string right_key;
+			std::string shoot_key;
 
-		SpriteComponent* spriteComponent;
-		TransformComponent* transformComponent;
+			SpriteComponent* sprite_component;
+			TransformComponent* transform_component;
 
-		KeyboardComponent()
-		{}
+			KeyboardComponent()
+			{}
 
-		KeyboardComponent(std::string upKey, std::string downKey, std::string leftKey, std::string rightKey, std::string shootKey)
-		{
-			this->upKey = SDL_Keycode(upKey);
-			this->downKey = SDL_Keycode(downKey);
-			this->leftKey = SDL_Keycode(leftKey);
-			this->rightKey = SDL_Keycode(rightKey);
-			this->shootKey = SDL_Keycode(shootKey);
-		}
-
-		std::string SDL_Keycode(std::string key)
-		{
-			if(key.compare("up") == 0) return "1073741906";
-			if(key.compare("down") == 0) return "1073741905";
-			if(key.compare("left") == 0) return "1073741904";
-			if(key.compare("right") == 0) return "1073741903";
-			if(key.compare("space") == 0) return "32";
-
-			return std::to_string(static_cast<int>(key[0]));
-		}
-
-		void Initialize() override
-		{
-			transformComponent = entity->GetComponent<TransformComponent>();
-			spriteComponent = entity->GetComponent<SpriteComponent>();
-		}
-
-		void Update(float deltaTime) override
-		{
-			if(Game::event.type == SDL_KEYDOWN)
+			KeyboardComponent(std::string up_key, std::string down_key, std::string left_key, std::string right_key, std::string shoot_key)
 			{
-				int speed = 100;
-				std::string keyCode = std::to_string(Game::event.key.keysym.sym);
-
-				if(keyCode.compare(upKey) == 0)
-				{
-					transformComponent->velocity.x = 0;
-					transformComponent->velocity.y = -speed;
-					spriteComponent->Play("UpAnimation");
-				}
-
-				if(keyCode.compare(downKey) == 0)
-				{
-					transformComponent->velocity.x = 0;
-					transformComponent->velocity.y = speed;
-					spriteComponent->Play("DownAnimation");
-				}
-
-				if(keyCode.compare(leftKey) == 0)
-				{
-					transformComponent->velocity.x = -speed;
-					transformComponent->velocity.y = 0;
-					spriteComponent->Play("LeftAnimation");
-				}
-
-				if(keyCode.compare(rightKey) == 0)
-				{
-					transformComponent->velocity.x = speed;
-					transformComponent->velocity.y = 0;
-					spriteComponent->Play("RightAnimation");
-				}
-
-				if(keyCode.compare(shootKey) == 0)
-				{}
+				this->up_key = SDL_Keycode(up_key);
+				this->down_key = SDL_Keycode(down_key);
+				this->left_key = SDL_Keycode(left_key);
+				this->right_key = SDL_Keycode(right_key);
+				this->shoot_key = SDL_Keycode(shoot_key);
 			}
 
-			if(Game::event.type == SDL_KEYUP)
+			std::string SDL_Keycode(std::string key)
 			{
-				std::string keyCode = std::to_string(Game::event.key.keysym.sym);
+				if(key.compare("up") == 0) return "1073741906";
+				if(key.compare("down") == 0) return "1073741905";
+				if(key.compare("left") == 0) return "1073741904";
+				if(key.compare("right") == 0) return "1073741903";
+				if(key.compare("space") == 0) return "32";
 
-				if(keyCode.compare(upKey) == 0)
-				{
-					transformComponent->velocity.y = 0;
-				}
-
-				if(keyCode.compare(downKey) == 0)
-				{
-					transformComponent->velocity.y = 0;
-				}
-
-				if(keyCode.compare(leftKey) == 0)
-				{
-					transformComponent->velocity.x = 0;
-				}
-
-				if(keyCode.compare(rightKey) == 0)
-				{
-					transformComponent->velocity.x = 0;
-				}
-
-				if(keyCode.compare(shootKey) == 0)
-				{}
+				return std::to_string(static_cast<int>(key[0]));
 			}
-		}
+
+			void Initialize() override
+			{
+				transform_component = entity->GetComponent<TransformComponent>();
+				sprite_component = entity->GetComponent<SpriteComponent>();
+			}
+
+			void Update(float delta_time) override
+			{
+				if(Game::event.type == SDL_KEYDOWN)
+				{
+					int speed = 100;
+					std::string key_code = std::to_string(Game::event.key.keysym.sym);
+
+					if(key_code.compare(up_key) == 0)
+					{
+						transform_component->velocity.x = 0;
+						transform_component->velocity.y = -speed;
+						sprite_component->Play("UpAnimation");
+					}
+
+					if(key_code.compare(down_key) == 0)
+					{
+						transform_component->velocity.x = 0;
+						transform_component->velocity.y = speed;
+						sprite_component->Play("DownAnimation");
+					}
+
+					if(key_code.compare(left_key) == 0)
+					{
+						transform_component->velocity.x = -speed;
+						transform_component->velocity.y = 0;
+						sprite_component->Play("LeftAnimation");
+					}
+
+					if(key_code.compare(right_key) == 0)
+					{
+						transform_component->velocity.x = speed;
+						transform_component->velocity.y = 0;
+						sprite_component->Play("RightAnimation");
+					}
+
+					if(key_code.compare(shoot_key) == 0)
+					{}
+				}
+
+				if(Game::event.type == SDL_KEYUP)
+				{
+					std::string key_code = std::to_string(Game::event.key.keysym.sym);
+
+					if(key_code.compare(up_key) == 0)
+					{
+						transform_component->velocity.y = 0;
+					}
+
+					if(key_code.compare(down_key) == 0)
+					{
+						transform_component->velocity.y = 0;
+					}
+
+					if(key_code.compare(left_key) == 0)
+					{
+						transform_component->velocity.x = 0;
+					}
+
+					if(key_code.compare(right_key) == 0)
+					{
+						transform_component->velocity.x = 0;
+					}
+
+					if(key_code.compare(shoot_key) == 0)
+					{}
+				}
+			}
 	};
 }
+
+#endif

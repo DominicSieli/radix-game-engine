@@ -2,7 +2,7 @@
 
 namespace Radix
 {
-	AssetManager::AssetManager(EntityManager* entityManager)
+	AssetManager::AssetManager(EntityManager* entity_manager)
 	{}
 
 	AssetManager::~AssetManager()
@@ -14,23 +14,23 @@ namespace Radix
 		textures.clear();
 	}
 
-	SDL_Texture* AssetManager::GetTexture(std::string textureId)
+	SDL_Texture* AssetManager::GetTexture(std::string texture_id)
 	{
-		return textures[textureId];
+		return textures[texture_id];
 	}
 
-	void AssetManager::AddTexture(std::string textureId, const char* filePath)
+	void AssetManager::AddTexture(std::string texture_id, const char* file_path)
 	{
-		textures.emplace(textureId, TextureManager::LoadTexture(filePath));
+		textures.emplace(texture_id, TextureManager::LoadTexture(file_path));
 	}
 
-	TTF_Font* AssetManager::GetFont(std::string fontId)
+	TTF_Font* AssetManager::GetFont(std::string font_id)
 	{
-		return fonts[fontId];
+		return fonts[font_id];
 	}
 
-	void AssetManager::AddFont(std::string fontId, const char* filePath, int fontSize)
+	void AssetManager::AddFont(std::string font_id, const char* file_path, int font_size)
 	{
-		fonts.emplace(fontId, FontManager::LoadFont(filePath, fontSize));
+		fonts.emplace(font_id, FontManager::LoadFont(file_path, font_size));
 	}
 }

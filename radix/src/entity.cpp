@@ -3,21 +3,21 @@
 
 namespace Radix
 {
-	Entity::Entity(EntityManager& entityManager): entityManager{entityManager}
+	Entity::Entity(EntityManager& entity_manager): entity_manager{entity_manager}
 	{
 		this->active = true;
 	}
 
-	Entity::Entity(EntityManager& entityManager, std::string name, LayerType layer): entityManager{entityManager}, name{name}, layer{layer}
+	Entity::Entity(EntityManager& entity_manager, std::string name, LayerType layer): entity_manager{entity_manager}, name{name}, layer{layer}
 	{
 		this->active = true;
 	}
 
-	void Entity::Update(float deltaTime)
+	void Entity::Update(float delta_time)
 	{
 		for(auto& component : components)
 		{
-			component->Update(deltaTime);
+			component->Update(delta_time);
 		}
 	}
 
@@ -41,7 +41,7 @@ namespace Radix
 
 	void Entity::ListComponents() const
 	{
-		for(auto component: componentTypeMap)
+		for(auto component: component_type_map)
 		{
 			std::cout << "Component<" << component.first->name() << ">" << "\n";
 		}

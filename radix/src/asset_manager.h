@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ASSET_MANAGER
+#define ASSET_MANAGER
 
 #include <map>
 #include <string>
@@ -13,17 +14,19 @@ namespace Radix
 {
 	class AssetManager
 	{
-	private:
-		EntityManager* entityManager;
-		std::map<std::string, TTF_Font*> fonts;
-		std::map<std::string, SDL_Texture*> textures;
-	public:
-		AssetManager(EntityManager* entityManager);
-		~AssetManager();
-		void Clear();
-		SDL_Texture* GetTexture(std::string textureId);
-		void AddTexture(std::string textureId, const char* filePath);
-		TTF_Font* GetFont(std::string fontId);
-		void AddFont(std::string fontId, const char* filePath, int fontSize);
+		private:
+			EntityManager* entity_manager;
+			std::map<std::string, TTF_Font*> fonts;
+			std::map<std::string, SDL_Texture*> textures;
+		public:
+			AssetManager(EntityManager* entity_manager);
+			~AssetManager();
+			void Clear();
+			SDL_Texture* GetTexture(std::string texture_id);
+			void AddTexture(std::string texture_id, const char* file_path);
+			TTF_Font* GetFont(std::string font_id);
+			void AddFont(std::string font_id, const char* file_path, int font_size);
 	};
 }
+
+#endif

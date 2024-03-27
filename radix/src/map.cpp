@@ -6,43 +6,43 @@
 
 namespace Radix
 {
-	extern EntityManager entityManager;
+	extern EntityManager entity_manager;
 
-	Map::Map(std::string textureId, int scale, int tileSize)
+	Map::Map(std::string texture_id, int scale, int tile_size)
 	{
-		this->textureId = textureId;
+		this->texture_id = texture_id;
 		this->scale = scale;
-		this->tileSize = tileSize;
+		this->tile_size = tile_size;
 	}
 
 	Map::~Map()
 	{}
 
-	void Map::LoadMap(std::string filePath, int mapSizeX, int mapSizeY)
+	void Map::LoadMap(std::string file_path, int map_size_x, int map_size_y)
 	{
-		std::fstream mapFile;
-		mapFile.open(filePath);
+		std::fstream map_file;
+		map_file.open(file_path);
 
-		for(int y = 0; y < mapSizeY; y++)
+		for(int y = 0; y < map_size_y; y++)
 		{
-			for(int x = 0; x < mapSizeX; x++)
+			for(int x = 0; x < map_size_x; x++)
 			{
-				char chr;
-				mapFile.get(chr);
-				int sourceRectangleY = atoi(&chr) * tileSize;
-				mapFile.get(chr);
-				int sourceRectangleX = atoi(&chr) * tileSize;
-				AddTile(sourceRectangleX, sourceRectangleY, x * (scale * tileSize), y * (scale * tileSize));
-				mapFile.ignore();
+				char character;
+				map_file.get(character);
+				int source_rectangle_y = atoi(&character) * tile_size;
+				map_file.get(character);
+				int source_rectangle_x = atoi(&character) * tile_size;
+				AddTile(source_rectangle_x, source_rectangle_y, x * (scale * tile_size), y * (scale * tile_size));
+				map_file.ignore();
 			}
 		}
 
-		mapFile.close();
+		map_file.close();
 	}
 
-	void Map::AddTile(int sourceRectangleX, int sourceRectangleY, int x, int y)
+	void Map::AddTile(int source_rectangle_x, int source_rectangle_y, int x, int y)
 	{
-		Entity& newTile(entityManager.AddEntity("Tile", TILEMAP));
-		newTile.AddComponent<TileComponent>(sourceRectangleX, sourceRectangleY, x, y, tileSize, scale, textureId);
+		Entity& new_tile(entity_manager.AddEntity("Tile", TILEMAP));
+		new_tile.AddComponent<TileComponent>(source_rectangle_x, source_rectangle_y, x, y, tile_size, scale, texture_id);
 	}
 }
