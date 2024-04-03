@@ -3,8 +3,8 @@
 
 #include <SDL2/SDL.h>
 
-#include "./game.h"
-#include "./entity_manager.h"
+#include "game.h"
+#include "entity_manager.h"
 #include "../lib/glm/glm.hpp"
 
 namespace Radix
@@ -17,25 +17,13 @@ namespace Radix
 			glm::vec2 velocity;
 			glm::vec2 dimension;
 
-			TransformComponent(int position_x, int position_y, int velocity_x, int velocity_y, int dimension_x, int dimension_y, int scale)
-			{
-				this->scale = scale;
-				this->position = glm::vec2(position_x, position_y);
-				this->velocity = glm::vec2(velocity_x, velocity_y);
-				this->dimension = glm::vec2(dimension_x, dimension_y);
-			}
+			TransformComponent(int, int, int, int, int, int, int);
 
-			void Initialize() override
-			{}
+			void Initialize() override;
 
-			void Update(float delta_time) override
-			{
-				position.x += velocity.x * delta_time;
-				position.y += velocity.y * delta_time;
-			}
+			void Update(float) override;
 
-			void Render() override
-			{}
+			void Render() override;
 	};
 }
 

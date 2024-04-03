@@ -1,15 +1,18 @@
 #ifndef TEXTURE_MANAGER
 #define TEXTURE_MANAGER
 
-#include "./game.h"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_image.h>
 
 namespace Radix
 {
 	class TextureManager
 	{
 		public:
-			static SDL_Texture* LoadTexture(const char* file_name);
-			static void Draw(SDL_Texture* texture, SDL_Rect source, SDL_Rect destination, SDL_RendererFlip flip);
+			static SDL_Texture* LoadTexture(const char*);
+
+			static void Draw(SDL_Texture*, SDL_Rect, SDL_Rect, SDL_RendererFlip);
 	};
 }
 

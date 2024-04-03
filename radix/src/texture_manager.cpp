@@ -1,4 +1,5 @@
-#include "./texture_manager.h"
+#include "game.h"
+#include "texture_manager.h"
 
 namespace Radix
 {

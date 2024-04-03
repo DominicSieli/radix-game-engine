@@ -1,5 +1,6 @@
 #include <iostream>
-#include "./entity.h"
+
+#include "entity.h"
 
 namespace Radix
 {

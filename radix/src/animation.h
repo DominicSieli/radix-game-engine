@@ -7,10 +7,11 @@ namespace Radix
 	{
 		public:
 			unsigned int index;
-			unsigned int frames;
 			unsigned int speed;
+			unsigned int frames;
 
 			Animation();
+
 			Animation(unsigned int, unsigned int, unsigned int);
 	};
 }

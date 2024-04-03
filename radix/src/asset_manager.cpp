@@ -1,4 +1,4 @@
-#include "./asset_manager.h"
+#include "asset_manager.h"
 
 namespace Radix
 {

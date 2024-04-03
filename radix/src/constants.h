@@ -5,10 +5,10 @@
 
 namespace Radix
 {
+	const unsigned int FPS = 60;
+	const unsigned int LAYER_COUNT = 7;
 	const unsigned int WINDOW_WIDTH = 800;
 	const unsigned int WINDOW_HEIGHT = 600;
-
-	const unsigned int FPS = 60;
 	const unsigned int FRAME_TARGET_TIME = 1000 / FPS;
 
 	const SDL_Color GREEN = {0, 255, 0, 255};
@@ -34,8 +34,6 @@ namespace Radix
 		PLAYER_VEGETATION_COLLISION = 4,
 		PLAYER_LEVEL_COMPLETE_COLLISION = 5
 	};
-
-	const unsigned int LAYER_COUNT = 7;
 }
 
 #endif

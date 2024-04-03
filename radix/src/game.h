@@ -5,7 +5,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
 
-#include "./constants.h"
+#include "constants.h"
 
 namespace Radix
 {
@@ -18,24 +18,34 @@ namespace Radix
 			SDL_Window* window = nullptr;
 
 		public:
-			Game();
-			~Game();
-
 			int ticks_last_frame = 0;
-			bool Running() const;
 			static SDL_Event event;
 			static SDL_Rect camera;
 			static SDL_Renderer* renderer;
 			static AssetManager* asset_manager;
 
+			Game();
+
+			~Game();
+
+			bool Running() const;
+
 			void LoadLevel(int);
+
 			void Input();
+
 			void Update();
+
 			void Render();
+
 			void UpdateCameraMovement();
+
 			void CheckCollisions();
+
 			void ProcessGameOver();
+
 			void ProcessNextLevel(int);
+
 			void Destroy();
 	};
 }

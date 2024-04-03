@@ -1,4 +1,5 @@
-#include "./font_manager.h"
+#include "game.h"
+#include "font_manager.h"
 
 namespace Radix
 {

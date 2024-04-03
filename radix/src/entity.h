@@ -6,9 +6,9 @@
 #include <string>
 #include <typeinfo>
 
-#include "./constants.h"
-#include "./component.h"
-#include "./entity_manager.h"
+#include "constants.h"
+#include "component.h"
+#include "entity_manager.h"
 
 namespace Radix
 {
@@ -21,15 +21,23 @@ namespace Radix
 			EntityManager& entity_manager;
 			std::vector<Component*> components;
 			std::map<const std::type_info*, Component*> component_type_map;
+
 		public:
-			std::string name;
 			LayerType layer;
-			Entity(EntityManager& entity_manager);
-			Entity(EntityManager& entity_manager, std::string name, LayerType layer);
-			void Update(float delta_time);
+			std::string name;
+
+			Entity(EntityManager&);
+
+			Entity(EntityManager&, std::string, LayerType);
+
+			void Update(float);
+
 			void Render();
+
 			void Destroy();
+
 			bool Active() const;
+
 			void ListComponents() const;
 
 			template<typename T, typename... T_ARGS>
