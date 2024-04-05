@@ -5,6 +5,7 @@
 #include "asset_manager.h"
 #include "entity_manager.h"
 #include "sprite_component.h"
+#include "../lib/lua/sol.hpp"
 #include "keyboard_component.h"
 #include "collider_component.h"
 #include "transform_component.h"
@@ -156,8 +157,8 @@ namespace Radix
 	{
 		TransformComponent* player_transform = player.GetComponent<TransformComponent>();
 
-		camera.x = player_transform->position.x - (int)(WINDOW_WIDTH / 2);
-		camera.y = player_transform->position.y - (int)(WINDOW_HEIGHT / 2);
+		camera.x = player_transform->position.x - static_cast<int>(WINDOW_WIDTH / 2);
+		camera.y = player_transform->position.y - static_cast<int>(WINDOW_HEIGHT / 2);
 
 		camera.x = (camera.x < 0) ? 0 : camera.x;
 		camera.y = (camera.y < 0) ? 0 : camera.y;
