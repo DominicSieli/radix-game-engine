@@ -5,7 +5,6 @@
 #include "asset_manager.h"
 #include "entity_manager.h"
 #include "sprite_component.h"
-#include "../lib/lua/sol.hpp"
 #include "keyboard_component.h"
 #include "collider_component.h"
 #include "transform_component.h"
